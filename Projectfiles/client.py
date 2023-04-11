@@ -33,6 +33,8 @@ receive_thread.start()
 
 # Send messages to server
 while True:
+    
+    # type in LOG OFF (all caps) for client to safely disconnect
     message = input()
     if message == 'LOG OFF':
         stop_client()
