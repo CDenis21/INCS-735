@@ -75,3 +75,6 @@ while True:
     clients.append(client_socket)
     client_thread = threading.Thread(target=handle_client, args=(client_socket,))
     client_thread.start()
+
+# server is hypothetically suppose to always active
+# if need to terminate must be done force terminate from console
