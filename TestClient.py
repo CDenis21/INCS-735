@@ -1,7 +1,7 @@
-import socket
-import threading
 from tkinter import Tk, Frame, Scrollbar, Label, END, Entry, Text, VERTICAL, Button, messagebox #Tkinter Python Module for GUI  
-
+import socket #Sockets for network connection
+import threading # for multiple proccess 
+import time
 
 
 class GUI:
@@ -20,17 +20,20 @@ class GUI:
 
     def initialize_socket(self):
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # initialazing socket with TCP and IPv4
-        remote_ip = '127.0.0.1' # IP address 
-        remote_port = 50000 #TCP port
+        remote_ip = 'localhost' # IP address 
+        remote_port = 8081 #TCP port
         self.client_socket.connect((remote_ip, remote_port)) #connect to the remote server
 
     def initialize_gui(self): # GUI initializer
-        self.root.title("Socket Chat") 
+        self.root.title("Chat Room") 
         self.root.resizable(0, 0)
         self.display_name_section()
         self.display_chat_entry_box()
         self.display_chat_box()
-        
+
+    # create chat history file if it doesn't exist
+        with open('chat_history.txt', 'a') as f:
+                pass    
         
     
     def listen_for_incoming_messages_in_a_thread(self):
@@ -103,7 +106,8 @@ class GUI:
     def send_chat(self):
         senders_name = self.name_widget.get().strip() + ": "
         data = self.enter_text_widget.get(1.0, 'end').strip()
-        message = (senders_name + data).encode('utf-8')
+        timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        message = (timestamp + senders_name + data).encode('utf-8')
         self.chat_transcript_area.insert('end', message.decode('utf-8') + '\n')
         self.chat_transcript_area.yview(END)
         self.client_socket.send(message)
@@ -122,6 +126,5 @@ if __name__ == '__main__':
     gui = GUI(root)
     root.protocol("WM_DELETE_WINDOW", gui.on_close_window)
     root.mainloop()
-
 
 
