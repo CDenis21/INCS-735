@@ -107,7 +107,7 @@ class GUI:
         senders_name = self.name_widget.get().strip() + ": "
         data = self.enter_text_widget.get(1.0, 'end').strip()
         timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        message = (timestamp + senders_name + data).encode('utf-8')
+        message = (timestamp + " " + senders_name + data).encode('utf-8')
         self.chat_transcript_area.insert('end', message.decode('utf-8') + '\n')
         self.chat_transcript_area.yview(END)
         self.client_socket.send(message)
