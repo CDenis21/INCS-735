@@ -2,7 +2,7 @@ from tkinter import Tk, Frame, Scrollbar, Label, END, Entry, Text, VERTICAL, But
 import socket #Sockets for network connection
 import threading # for multiple proccess 
 import time
-
+import datetime
 
 class GUI:
     client_socket = None
@@ -29,13 +29,8 @@ class GUI:
         self.root.resizable(0, 0)
         self.display_name_section()
         self.display_chat_entry_box()
-        self.display_chat_box()
-
-    # create chat history file if it doesn't exist
-        with open('chat_history.txt', 'a') as f:
-                pass    
+        self.display_chat_box()    
         
-    
     def listen_for_incoming_messages_in_a_thread(self):
         thread = threading.Thread(target=self.receive_message_from_server, args=(self.client_socket,)) # Create a thread for the send and receive in same time 
         thread.start()
@@ -111,8 +106,14 @@ class GUI:
         self.chat_transcript_area.insert('end', message.decode('utf-8') + '\n')
         self.chat_transcript_area.yview(END)
         self.client_socket.send(message)
+        self.write_chat_history(message.decode('utf-8'))
         self.enter_text_widget.delete(1.0, 'end')
         return 'break'
+
+    def write_chat_history(self, message):
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open("chat_history.txt", "a") as file:
+            file.write(f"{timestamp} {message}\n")
 
     def on_close_window(self):
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
