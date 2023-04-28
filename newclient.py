@@ -5,8 +5,8 @@ import tkinter as tk
 from tkinter import \
     messagebox
 
-HOST = '173.52.98.239'  # localhost
-PORT = 5004  # port number
+HOST = '192.168.1.166'  # localhost
+PORT = 1234  # port number
 
 # create socket object and connect to the server
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
