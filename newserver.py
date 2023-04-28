@@ -4,8 +4,8 @@ import json
 import os
 import time
 
-HOST = '173.52.98.239'  # localhost
-PORT = 5004  # port number
+HOST = '192.168.1.166'  # localhost
+PORT = 1234  # port number
 
 # create socket object and bind to the host and port
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -75,3 +75,4 @@ def start_server():
 
 # start the server
 start_server()
+
