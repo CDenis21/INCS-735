@@ -72,6 +72,7 @@ def start_server():
         client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
         client_thread.daemon = True
         client_thread.start()
+        print('Connected to ',HOST, ':', str(PORT))
 
 # start the server
 start_server()
