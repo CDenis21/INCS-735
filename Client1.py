@@ -68,7 +68,7 @@ def send_message():
 
 # create button to send message
 send_button = tk.Button(root, text="Send", command=send_message)
-send_button.pack(side=tk.LEFT)
+send_button.pack(side=tk.LEFT, padx=5, pady=5)
 
 def join_chat():
     # get the username from the entry box
@@ -86,7 +86,7 @@ def join_chat():
 
 # create button to join chat
 join_button = tk.Button(root, text="Join Chat", command=join_chat)
-join_button.pack(side=tk.RIGHT)
+join_button.pack(side=tk.RIGHT, padx=5, pady=5)
 
 # disable the send button and message entry box until the user joins the chat
 send_button.config(state=tk.DISABLED)
