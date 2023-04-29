@@ -63,7 +63,7 @@ def handle_client(client_socket, client_address):
 def start_server():
     # listen for incoming connections
     server_socket.listen()
-
+    print("Listening for incoming messages...")
     # loop to handle incoming connections
     while True:
         client_socket, client_address = server_socket.accept()
