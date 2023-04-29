@@ -86,7 +86,7 @@ def join_chat():
 
 # create button to join chat
 join_button = tk.Button(root, text="Join Chat", command=join_chat)
-join_button.pack(side=tk.TOP)
+join_button.pack(side=tk.RIGHT)
 
 # disable the send button and message entry box until the user joins the chat
 send_button.config(state=tk.DISABLED)
